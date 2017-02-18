@@ -7,6 +7,7 @@ public class Demo {
 		System.out.println("How are you?");
 		System.out.println("this is a modifier");
 		System.out.println("This is demo3-updated on 3:588pm");
+		System.out.println("This is demo3-updated on 4:00pm");
 
 	}
 
