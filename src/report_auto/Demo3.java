@@ -1,4 +1,4 @@
-package demo;
+package report_auto;
 
 public class Demo3 {
 

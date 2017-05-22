@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/Utils/ReadExcelFile.java=UTF-8
+encoding//src/report_auto/Utils/FileUtil.java=UTF-8
+encoding//src/report_auto/Utils/ReadExcelFile.java=UTF-8
