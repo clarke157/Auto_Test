@@ -1,6 +1,7 @@
 package report_auto.Utils;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,11 +10,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import testautomation.util.Param;
 
 public class ReadExcelFile {
 	public static final String OFFICE_EXCEL_2003_POSTFIX = "xls";
@@ -177,6 +184,62 @@ public class ReadExcelFile {
             }
         }
     }
+ 	
+ 	public static List<Param> read() throws Exception{
+		 HSSFWorkbook wb = new HSSFWorkbook();
+		 HSSFSheet s = wb.createSheet();
+		 HSSFRow row = s.createRow(0);
+		 HSSFCell cell = row.createCell((int)0,0);
+
+		 //－－－－－－－－－－－－从xls读出数据
+		 wb = new HSSFWorkbook(new FileInputStream("C:\\learn\\test.xls"));
+		 s = wb.getSheetAt(0);
+		 
+		 //获得EXCEL行数
+		 int rowNums=s.getLastRowNum();
+		 //获得Excell列数
+		 //int columnNum=r.getPhysicalNumberOfCells();
+		 
+		 List<Param> params=new ArrayList<Param>();
+		 for(int i=1;i<=rowNums;i++){
+			 HSSFRow r = s.getRow(i);
+			 cell=r.getCell(0);
+			 Param param= new Param();
+			 param.setNo(r.getCell(0).getStringCellValue());
+			 param.setName(r.getCell(1).getStringCellValue());
+			 param.setAge(r.getCell(2).getStringCellValue());
+			 param.setSex(r.getCell(3).getStringCellValue());
+			 param.setExpResu(r.getCell(4).getStringCellValue());
+//			 System.out.println(cell.getRichStringCellValue());
+			 params.add(param);
+		 }
+		 return params;
+
+	}
+
+	/**
+	  * 写入Excel，在任意坐标处写入数据。
+	  * String value：你要输入的内容
+	  * int x ：行坐标，Excel从 0 算起
+	  * int y   ：列坐标，Excel从 0 算起
+	  */
+		public static void writeCell(String filePath,int x,int y,String value) {
+			try {
+				// 创建Excel的工作书册 Workbook,对应到一个excel文档
+				HSSFWorkbook wb = new HSSFWorkbook(new FileInputStream(filePath));
+				HSSFSheet sheet=wb.getSheetAt(0);
+				HSSFRow row=sheet.getRow(x);
+				HSSFCell cell=row.getCell((short) y);
+				cell.setCellValue(value);
+				FileOutputStream os;
+				os = new FileOutputStream(filePath);
+				wb.write(os);
+				os.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
     /*
      * The following code are used for debug
      */
