@@ -13,9 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import testautomation.util.Log;
-import testautomation.util.RobotUtil;
+import report_auto.Utils.Log;
 
 public class CMOFilterPage {
 	@FindBy(xpath = "//input[@value='GBS']")
