@@ -20,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import testautomation.util.Param;
+import report_auto.Utils.Param;
 
 public class ReadExcelFile {
 	public static final String OFFICE_EXCEL_2003_POSTFIX = "xls";
@@ -247,14 +247,14 @@ public class ReadExcelFile {
 		ReadExcelFile mytest=new ReadExcelFile();
 //		Object[][] results=mytest.getExcelDataForAllSheets("C:\\downloadFiles\\ExcelSampleData.xls");
 //		Map<String,String> results=mytest.getData_serial_csa_id("C:\\downloadFiles", "ExcelSampleData.xlsx", "Sheet2");
-		Map<String,String> results=mytest.getData_serial_csa_id("C:\\at_IBM\\SLMT CLD\\SLIC Reports", "Contractor Management Outlook report.xlsx", "Active");
+		Map<String,String> results=mytest.getData_serial_csa_id("C:\\atIBM\\SLMT CLD\\SLIC Reports", "Contractor Management Outlook report.xlsx", "Active");
 			Iterator<Map.Entry<String, String>> it = results.entrySet().iterator();
 			while(it.hasNext()){
 				Map.Entry<String, String> entry = it.next();
 				System.out.println(entry.getKey()+" "+entry.getValue());
 			}
 			
-			String primarykey = mytest.getPrimaryKey("C:\\at_IBM\\SLMT CLD\\SLIC Reports", "Contractor Management Outlook report.xlsx", "Active");
+			String primarykey = mytest.getPrimaryKey("C:\\atIBM\\SLMT CLD\\SLIC Reports", "Contractor Management Outlook report.xlsx", "Active");
 			System.out.println(primarykey);
 //		for(int i=0;i<results.size().length;i++){
 //			for(int j=0;j<results[i].length;j++){
