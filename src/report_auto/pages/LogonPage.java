@@ -24,6 +24,11 @@ public class LogonPage extends LoadableComponent<LogonPage> {
 	protected WebElement passwordInput;
 	@FindBy(className="loginFooterButton")
 	protected WebElement okButton;
+	@FindBy(id="CAMNamespace")
+	protected WebElement CAMNamespace;
+	@FindBy(id="CAMUsername")
+	protected WebElement CAMUsername;
+	
 	
 	protected Integer DRIVER_WAIT_TIME = 5;
 	private String produrl="https://w3-03.ibm.com/xxxx/xxxx/ServletGateway/servlet/Gateway";
@@ -57,11 +62,11 @@ public class LogonPage extends LoadableComponent<LogonPage> {
 	public IBMCognosConnectionPage login_dev(String username, String pwd){
 		driver.get(devurl);
 		WebDriverWait wait = new WebDriverWait(driver,10);
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CAMNamespace")));
-	    Select droplist=new Select(driver.findElement(By.id("CAMNamespace")));
+		wait.until(ExpectedConditions.visibilityOf(CAMNamespace));
+	    Select droplist=new Select(CAMNamespace);
 	    droplist.selectByValue("IBMIntranet");
 		cmdOK.click();
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CAMUsername")));
+	    wait.until(ExpectedConditions.visibilityOf(CAMUsername));
 		userIdInput.sendKeys(username);
 		passwordInput.sendKeys(pwd);
 		okButton.click();
