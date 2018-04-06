@@ -19,10 +19,10 @@ import org.testng.annotations.Test;
 
 import com.ibm.json.java.JSONObject;
 
-import testautomation.BaseTest;
-import testautomation.page.CMOFilterPage;
-import testautomation.util.DBUtil;
-import testautomation.util.ReadExcelFile;
+import report_auto.pages.CMOFilterPage;
+import report_auto.Utils.BaseTest;
+import report_auto.Utils.DBUtil;
+import report_auto.Utils.ReadExcelFile;
 
 public class TestCMOReport extends BaseTest {
 	public TestCMOReport(JSONObject env) {
