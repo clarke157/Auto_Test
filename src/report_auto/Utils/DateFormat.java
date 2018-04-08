@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class DateFormat {
 	public String formatDateToString(long date) {
@@ -13,14 +14,37 @@ public class DateFormat {
 	    return formatter.format(date);
 	}
 	 
-	public String formatDate(Date date){       
+	public static String formatDate(Date date){       
 	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	    return formatter.format(date);
 	}
 	
 	public String formatDate(long date){       
-	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	    return formatter.format(date);
+	}
+	/* 2018/4/8 - added method String formatToDateUseTimezone(String date,String timezoneid1, String timezoneid2)
+	 * 次方法主要用来将特定时区的时间转换成指定时区的时间，比如将北京时间“2018-04-08 15:40:49.031”，转换对应的美国东部时间是“2018-04-08 03:40:49.031”
+	 * 本方法共三个参数，第一个是待转换的时间，第二个是待转换时间是哪个时区，第三个是需要转换成的时区
+	 * AvailableIDs：
+	 * US/Eastern美国东部时间
+	 * UTC世界标准时间
+	 * PST太平洋标准时间
+	 * Asia/Shanghai上海时间
+	 */
+	public String formatToDateUseTimezone(String date,String timezoneid1, String timezoneid2){
+		TimeZone.setDefault(TimeZone.getTimeZone(timezoneid2));
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		formatter.setTimeZone(TimeZone.getTimeZone(timezoneid1));
+		Date d = null;
+		String s = null;
+			try {
+				d = formatter.parse(date);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			s = formatDate(d);
+			return s;
 	}
 	
 	public Date formatToDate(String date){
@@ -34,6 +58,8 @@ public class DateFormat {
 	    return d;
 	}
 	 
+
+	
 	public long formatDate(String date){       
 	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    Date d = null;
@@ -141,13 +167,23 @@ public class DateFormat {
 			
 			return (String) monthMap.get(key);
 		}
-	
+		
 	public static void main(String[] args) {
+		String date = "2018-04-08 15:21:37.081";
 		DateFormat df = new DateFormat();
-		System.out.println(df.formatDateToString(System.currentTimeMillis()));
-		System.out.println(df.formatDate(new Date()));
-		System.out.println(df.formatDate(System.currentTimeMillis()));
-		System.out.println(df.formatDate("2015-07-16"));
-		System.out.println(df.formatToDate("2015-07-16"));
+//		System.out.println(df.formatDateToString(System.currentTimeMillis()));
+		System.out.println(formatDate(new Date()));
+//		System.out.println(df.formatDate(System.currentTimeMillis()));
+//		System.out.println(df.formatDate("2015-07-16"));
+//		System.out.println(df.formatToDate("2015-07-16"));
+//		getTimeStamp();
+		System.out.println(new Date());
+//		for(String i:TimeZone.getAvailableIDs()){
+//			System.out.println(i);
+//		}
+		/*
+		 * 测试formatToDateUseTimezone(String date,String timezoneid1, String timezoneid2)
+		 */
+		System.out.println(df.formatToDateUseTimezone(formatDate(new Date()),"Asia/Shanghai","US/Eastern"));
 	}
 }
