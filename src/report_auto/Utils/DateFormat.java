@@ -184,6 +184,6 @@ public class DateFormat {
 		/*
 		 * 测试formatToDateUseTimezone(String date,String timezoneid1, String timezoneid2)
 		 */
-		System.out.println(df.formatToDateUseTimezone(formatDate(new Date()),"Asia/Shanghai","US/Eastern"));
+		System.out.println(df.formatToDateUseTimezone(formatDate(new Date()),"US/Eastern","Asia/Shanghai"));
 	}
 }
