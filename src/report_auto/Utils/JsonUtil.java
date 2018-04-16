@@ -24,7 +24,7 @@ package report_auto.Utils;
 	    /**将Bean转换成Map
 	     * 将Map转换Json数据
 	     * 或者直接将Bean转换成Json
-	     */public static String BuildJson(Param param) throws JSONException {
+	     */public static String buildJson(Param param) throws JSONException {
 
 	        
 	    	 Map<String, String> map1 = new HashMap<String, String>();
@@ -50,7 +50,7 @@ package report_auto.Utils;
 	    /**
 	     * 解析String格式Json数据，返回JSONArray
 	     *
-	     */public static JSONArray ParseJson(String jsonString) throws JSONException,
+	     */public static JSONArray parseJson(String jsonString) throws JSONException,
 	            ParseException {
 	    	 JSONArray ja = JSONArray.fromObject(jsonString);
 	        return ja;
@@ -67,6 +67,6 @@ package report_auto.Utils;
 	    	 pa.setNo("123456");
 	    	 pa.setAge("20");
 
-	    	 String str = BuildJson(pa);
+	    	 String str = buildJson(pa);
 	     }
 }
