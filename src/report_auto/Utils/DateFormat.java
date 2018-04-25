@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
@@ -70,6 +71,19 @@ public class DateFormat {
 		}	 
 	    return d.getTime();
 	}
+	
+	public String getTimeString() {
+		Calendar calendar = new GregorianCalendar();
+		String year = String.valueOf(calendar.get(Calendar.YEAR));
+		System.out.println("year is: "+year);
+		String month = this.valueOfString(String.valueOf(calendar.get(Calendar.MONTH) + 1),2);	
+		String day = this.valueOfString(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)),2);
+		String hour = this.valueOfString(String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)),2);
+		String minute = this.valueOfString(String.valueOf(calendar.get(Calendar.MINUTE)),2);
+		String second = this.valueOfString(String.valueOf(calendar.get(Calendar.SECOND)),2);
+		String millisecond = this.valueOfString(String.valueOf(calendar.get(Calendar.MILLISECOND)),3);
+		return year+month+day+hour+minute+second+millisecond;
+	}	
 	
 	    // get current time.
 		public static String getTimeStamp(){
@@ -185,5 +199,8 @@ public class DateFormat {
 		 * 测试formatToDateUseTimezone(String date,String timezoneid1, String timezoneid2)
 		 */
 		System.out.println(df.formatToDateUseTimezone(formatDate(new Date()),"US/Eastern","Asia/Shanghai"));
+		
+		System.out.println(getTimeStamp());
+		System.out.println(getCurrentYear());
 	}
 }
